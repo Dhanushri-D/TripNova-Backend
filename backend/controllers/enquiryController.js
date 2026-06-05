@@ -6,12 +6,14 @@ exports.getAll = async (req, res) => {
 };
 
 exports.getMyEnquiries = async (req, res) => {
-  const enquiries = await Enquiry.find({ userId: req.user.id }).sort({ createdAt: -1 });
+  const enquiries = await Enquiry.find({
+    $or: [{ userId: req.user.id }, { email: req.user.email }]
+  }).sort({ createdAt: -1 });
   res.json(enquiries);
 };
 
 exports.create = async (req, res) => {
-  const enquiry = await Enquiry.create({ ...req.body, userId: req.user?.id });
+  const enquiry = await Enquiry.create({ ...req.body, userId: req.user.id });
   res.status(201).json(enquiry);
 };
 
