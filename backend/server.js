@@ -21,6 +21,7 @@ app.use('/api/gallery', require('./routers/galleryRouter'));
 app.use('/api/users', require('./routers/userRouter'));
 app.use('/api/trip-plans', require('./routers/tripPlanRouter'));
 app.use('/api/budget-plans', require('./routers/budgetPlanRouter'));
+app.use('/api/wishlist', require('./routers/wishlistRouter'));
 
 app.use((err, req, res, next) => {
   console.error(err.message);
